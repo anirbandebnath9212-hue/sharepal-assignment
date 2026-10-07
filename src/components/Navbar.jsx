@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   FiMapPin,
   FiCalendar,
@@ -7,92 +9,92 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 
+import DateSelectionModal from "./DateSelectionModal";
+
 function Navbar() {
+  const [showDateModal, setShowDateModal] = useState(false);
+
   return (
-    <header className="navbar">
+    <>
+      <header className="navbar">
+        <div className="navbar-container">
 
-      <div className="navbar-container">
+          <div className="navbar-logo">
+            Share<span>Pal</span>
+          </div>
 
-        {/* Logo */}
+          <div className="rental-controls">
 
-        <div className="navbar-logo">
-          Share<span>Pal</span>
-        </div>
+            <button className="location-control">
+              <FiMapPin />
+              <span>Bangalore</span>
+              <FiChevronDown className="location-arrow" />
+            </button>
 
+            <button
+              className="date-control"
+              onClick={() => setShowDateModal(true)}
+            >
+              <FiCalendar />
+              <span>Delivery Date</span>
+            </button>
 
-        {/* Rental controls */}
+            <button
+              className="date-control"
+              onClick={() => setShowDateModal(true)}
+            >
+              <FiCalendar />
+              <span>Pickup Date</span>
+            </button>
 
-        <div className="rental-controls">
+            <button
+              className="select-btn"
+              onClick={() => setShowDateModal(true)}
+            >
+              <FiCalendar />
+              <span>Select</span>
+            </button>
 
-          <button className="location-control">
-            <FiMapPin />
+          </div>
 
-            <span>Bangalore</span>
+          <div className="navbar-actions">
 
-            <FiChevronDown className="location-arrow" />
-          </button>
+            <button
+              className="navbar-icon"
+              aria-label="Search"
+            >
+              <FiSearch />
+            </button>
 
+            <button
+              className="navbar-icon"
+              aria-label="Shopping cart"
+            >
+              <FiShoppingCart />
+            </button>
 
-          <button className="date-control">
-            <FiCalendar />
+            <button
+              className="profile-btn"
+              aria-label="Profile"
+            >
+              <FiUser />
+            </button>
 
-            <span>Delivery Date</span>
-          </button>
+            <button className="login-btn">
+              Hi, Login
+            </button>
 
-
-          <button className="date-control">
-            <FiCalendar />
-
-            <span>Pickup Date</span>
-          </button>
-
-
-          <button className="select-btn">
-            <FiCalendar />
-
-            <span>Select</span>
-          </button>
-
-        </div>
-
-
-        {/* Right actions */}
-
-        <div className="navbar-actions">
-
-          <button
-            className="navbar-icon"
-            aria-label="Search"
-          >
-            <FiSearch />
-          </button>
-
-
-          <button
-            className="navbar-icon"
-            aria-label="Shopping cart"
-          >
-            <FiShoppingCart />
-          </button>
-
-
-          <button
-            className="profile-btn"
-            aria-label="Profile"
-          >
-            <FiUser />
-          </button>
-
-
-          <button className="login-btn">
-            Hi, Login
-          </button>
+          </div>
 
         </div>
+      </header>
 
-      </div>
-
-    </header>
+      {showDateModal && (
+        <DateSelectionModal
+          onClose={() => setShowDateModal(false)}
+        />
+      )}
+    </>
   );
 }
 

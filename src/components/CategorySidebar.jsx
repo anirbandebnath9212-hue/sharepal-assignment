@@ -1,18 +1,16 @@
-import {
-  FiSmile,
-  FiMonitor,
-} from "react-icons/fi";
-
+import { FiSmile, FiMonitor } from "react-icons/fi";
 import products from "../data/products";
 
-const getImage = (searchTerms) => {
-  const product = products.find((item) =>
-    searchTerms.some((term) =>
-      item.name.toLowerCase().includes(term.toLowerCase())
-    )
-  );
+const findImage = (terms, fallbackIndex = 0) => {
+  const product = products.find((item) => {
+    const name = item.name.toLowerCase();
 
-  return product?.image || "";
+    return terms.some((term) =>
+      name.includes(term.toLowerCase())
+    );
+  });
+
+  return product?.image || products[fallbackIndex]?.image || "";
 };
 
 const categories = [
@@ -20,29 +18,53 @@ const categories = [
     name: "All",
     icon: <FiSmile />,
   },
+
   {
     name: "GTA VI",
-    image: getImage(["GTA"]),
+    image: findImage(
+      ["gta", "gta vi", "grand theft", "gta 6"],
+      0
+    ),
   },
+
   {
     name: "PS5 Console",
-    image: getImage(["PS5"]),
+    image: findImage(
+      ["ps5", "playstation 5", "playstation"],
+      0
+    ),
   },
+
   {
     name: "Xbox Console",
-    image: getImage(["Xbox"]),
+    image: findImage(
+      ["xbox", "series x", "series s"],
+      1
+    ),
   },
+
   {
     name: "VR",
-    image: getImage(["Oculus"]),
+    image: findImage(
+      ["oculus", "meta quest", "vr headset", "virtual reality"],
+      2
+    ),
   },
+
   {
     name: "Racing Wheel",
-    image: getImage(["Racing Wheel", "Racing"]),
+    image: findImage(
+      ["racing wheel", "steering wheel", "logitech", "thrustmaster"],
+      3
+    ),
   },
+
   {
     name: "Big Screen Gaming",
-    image: getImage(["Projector", "Big Screen"]),
+    image: findImage(
+      ["projector", "projector screen", "big screen"],
+      4
+    ),
     icon: <FiMonitor />,
   },
 ];
@@ -50,7 +72,6 @@ const categories = [
 function CategorySidebar() {
   return (
     <aside className="category-sidebar">
-
       {categories.map((category, index) => (
         <button
           className={`sidebar-category ${
@@ -58,9 +79,7 @@ function CategorySidebar() {
           }`}
           key={category.name}
         >
-
           <div className="sidebar-image">
-
             {category.image ? (
               <img
                 src={category.image}
@@ -70,14 +89,11 @@ function CategorySidebar() {
             ) : (
               category.icon
             )}
-
           </div>
 
           <span>{category.name}</span>
-
         </button>
       ))}
-
     </aside>
   );
 }

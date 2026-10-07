@@ -25,10 +25,33 @@ const reviews = [
   },
 ];
 
+function ReviewCard({ review }) {
+  return (
+    <article className="review-card">
+      <div className="google-rating">
+        <span className="google-g">G</span>
+        <span>★★★★★</span>
+      </div>
+
+      <p className="review-text">“ {review.review} ”</p>
+
+      <div className="review-user">
+        <div className="review-avatar">{review.initials}</div>
+
+        <div>
+          <strong>{review.name}</strong>
+          <p>
+            {review.location} • {review.category}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function Testimonials() {
   return (
     <section className="testimonials-section">
-
       <div className="breadcrumb">
         <span>Bangalore</span>
         <span>›</span>
@@ -39,45 +62,25 @@ function Testimonials() {
         Served more than <span>1 Lakh Orders</span>
       </h2>
 
-      <div className="reviews-grid">
+      <div className="reviews-wrapper">
+        <div className="reviews-track">
+          {/* First set */}
+          {reviews.map((review) => (
+            <ReviewCard
+              key={`first-${review.name}`}
+              review={review}
+            />
+          ))}
 
-        {reviews.map((review) => (
-          <article
-            className="review-card"
-            key={review.name}
-          >
-
-            <div className="google-rating">
-              <span className="google-g">G</span>
-
-              <span>★★★★★</span>
-            </div>
-
-            <p className="review-text">
-              “ {review.review} ”
-            </p>
-
-            <div className="review-user">
-
-              <div className="review-avatar">
-                {review.initials}
-              </div>
-
-              <div>
-                <strong>{review.name}</strong>
-
-                <p>
-                  {review.location} • {review.category}
-                </p>
-              </div>
-
-            </div>
-
-          </article>
-        ))}
-
+          {/* Duplicate set for seamless infinite animation */}
+          {reviews.map((review) => (
+            <ReviewCard
+              key={`second-${review.name}`}
+              review={review}
+            />
+          ))}
+        </div>
       </div>
-
     </section>
   );
 }

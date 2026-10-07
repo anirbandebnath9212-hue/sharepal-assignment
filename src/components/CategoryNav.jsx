@@ -8,6 +8,8 @@ function CategoryNav() {
       </button>
 
       <button>Outdoor</button>
+
+      <button>Entertainment</button>
     </nav>
   );
 }

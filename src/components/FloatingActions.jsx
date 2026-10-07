@@ -4,47 +4,53 @@ import {
   FiGrid,
   FiSearch,
   FiShoppingCart,
+  FiMessageCircle,
 } from "react-icons/fi";
 
 function FloatingActions() {
   return (
     <>
-      {/* Rental Date Button */}
-      <button className="rental-floating-button">
+      {/* Rental dates floating button */}
+      <button
+        className="rental-floating-button"
+        aria-label="Select rental dates"
+      >
         <FiCalendar />
         <span>Select rental dates to view prices</span>
       </button>
 
-      {/* Chat Button */}
-      <button className="chat-floating-button">
-        <span className="chat-dots">
-          •••
+      {/* Animated chat button */}
+      <button
+        className="chat-floating-button"
+        aria-label="Open chat"
+      >
+        <span className="chat-icon-wrapper">
+          <FiMessageCircle className="chat-icon" />
+          <span className="chat-dots">•••</span>
         </span>
       </button>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile bottom navigation */}
       <nav className="mobile-bottom-nav">
-
-        <button>
+        <button aria-label="Home">
           <FiHome />
           <span>Home</span>
         </button>
 
-        <button>
+        <button aria-label="Category">
           <FiGrid />
           <span>Category</span>
         </button>
 
-        <button>
+        <button aria-label="Search">
           <FiSearch />
           <span>Search</span>
         </button>
 
-        <button>
+        <button aria-label="Cart">
           <FiShoppingCart />
           <span>Cart</span>
         </button>
-
       </nav>
     </>
   );
