@@ -1,0 +1,2290 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f7;
+  color: #222222;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  width: 100%;
+  height: 84px;
+  background: linear-gradient(90deg, #4b1484, #54138c);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+
+.navbar-logo {
+  min-width: 145px;
+  padding: 10px 18px;
+
+  border-radius: 0 0 18px 18px;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #ffffff 55%,
+    #3d54ff 56%,
+    #263cff 100%
+  );
+
+  color: white;
+  font-size: 27px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.navbar-logo span {
+  color: #8cff00;
+}
+
+/* Rental controls */
+
+.rental-controls {
+  display: flex;
+  align-items: center;
+
+  background: white;
+  border: 2px solid #8d3cff;
+  border-radius: 28px;
+
+  overflow: hidden;
+  height: 48px;
+}
+
+.location-control,
+.date-control {
+  height: 100%;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  background: transparent;
+  border: none;
+
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.location-control svg,
+.date-control svg {
+  font-size: 17px;
+}
+
+.arrow {
+  margin-left: 2px;
+}
+
+.select-btn {
+  height: 100%;
+  padding: 0 17px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: #111a3d;
+  color: white;
+
+  border: 2px solid white;
+  border-radius: 24px;
+
+  font-weight: 700;
+}
+
+/* Navbar actions */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.navbar-icon {
+  background: transparent;
+  border: none;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+}
+
+.profile-btn {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: 2px solid white;
+
+  background: white;
+  color: #111827;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+.login-btn {
+  border: none;
+  background: transparent;
+
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CATEGORY NAVIGATION
+========================================================= */
+
+.category-nav {
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 110px;
+
+  background: #ffffff;
+}
+
+.category-nav button {
+  position: relative;
+
+  height: 100%;
+  padding: 0 4px;
+
+  border: none;
+  background: transparent;
+
+  color: #454545;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.category-nav button.active {
+  color: #333333;
+}
+
+.category-nav button.active::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 2px;
+
+  background: #8d25ff;
+}
+
+
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - 138px);
+  background: #f4f6f7;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.category-sidebar {
+  width: 120px;
+  flex-shrink: 0;
+
+  margin: 15px 12px 20px 48px;
+  padding: 12px 8px;
+
+  background: #ffffff;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+
+  overflow: hidden;
+}
+
+.sidebar-category {
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  color: #111827;
+
+  font-size: 13px;
+  line-height: 1.15;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.sidebar-image {
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #dce2ea;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.sidebar-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sidebar-image svg {
+  width: 30px;
+  height: 30px;
+  color: #315cff;
+}
+
+.sidebar-category.active .sidebar-image {
+  border: 2px solid #315cff;
+}
+
+.sidebar-category.active span {
+  color: #315cff;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+
+  padding: 15px 48px 60px 18px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.gaming-hero {
+  width: 100%;
+  height: 228px;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #50147e 0%,
+    #6620a1 45%,
+    #9228e8 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  margin-bottom: 12px;
+
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.hero-content strong {
+  font-style: italic;
+}
+
+.hero-brands {
+  margin-top: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 30px;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+.products-section {
+  width: 100%;
+}
+
+.products-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+  margin-bottom: 25px;
+
+  border-bottom: 1px solid #d9dde1;
+}
+
+.products-heading h2 {
+  margin: 0;
+
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 750;
+
+  color: #101828;
+}
+
+.products-heading span {
+  color: #8b8f94;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.products-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 26px;
+
+  margin-bottom: 28px;
+}
+
+
+/* Product card */
+
+.product-card {
+  min-width: 0;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Product image */
+
+.product-image-wrapper {
+  height: 230px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+}
+
+.product-image {
+  width: 88%;
+  height: 88%;
+
+  object-fit: contain;
+  display: block;
+}
+
+
+/* Product badge */
+
+.product-badge {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 2;
+
+  padding: 3px 9px;
+
+  border: 2px solid #ff641f;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #ff641f;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.product-badge.new {
+  border-color: #008ed6;
+  color: #008ed6;
+}
+
+
+/* Heart */
+
+.heart-button {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  z-index: 3;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #858585;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* Product info */
+
+.product-info {
+  padding: 10px 10px 16px;
+}
+
+.product-info h3 {
+  min-height: 48px;
+
+  margin: 0 0 9px;
+
+  color: #111827;
+
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+
+/* Bottom price */
+
+.product-bottom {
+  min-height: 68px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid #e0e3e6;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-label {
+  margin: 0 0 4px;
+
+  color: #858585;
+
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.price {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.price-unit {
+  margin-left: 3px;
+
+  color: #777777;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* Add button */
+
+.add-button {
+  flex-shrink: 0;
+
+  width: 48px;
+  height: 48px;
+
+  border: 2px solid #07163e;
+  border-radius: 50%;
+
+  background: #ffffff;
+  color: #07163e;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.add-button:hover {
+  background: #07163e;
+  color: #ffffff;
+}
+
+.add-button svg {
+  width: 23px;
+  height: 23px;
+}
+
+
+/* =========================================================
+   PROMO BANNER
+========================================================= */
+
+.promo-banner {
+  width: 100%;
+  min-height: 185px;
+
+  margin: 32px 0;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    100deg,
+    #111a50,
+    #162b78
+  );
+
+  color: white;
+}
+
+.promo-content {
+  position: relative;
+  z-index: 2;
+
+  padding: 28px 35px;
+}
+
+.promo-content h2 {
+  margin-bottom: 20px;
+
+  font-size: 29px;
+  font-weight: 800;
+}
+
+.promo-content h2 span {
+  color: #8cff00;
+}
+
+.promo-benefits {
+  display: flex;
+  gap: 12px;
+}
+
+.promo-benefit {
+  min-width: 150px;
+
+  padding: 10px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.promo-benefit small {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.promo-benefit strong {
+  display: block;
+
+  color: #8cff00;
+
+  font-size: 17px;
+  line-height: 1.1;
+}
+
+.promo-benefit p {
+  margin-top: 4px;
+
+  color: #c6c9dc;
+
+  font-size: 10px;
+}
+
+.promo-button {
+  position: absolute;
+
+  right: 28px;
+  bottom: 25px;
+
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: #8cff00;
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.promo-decoration {
+  position: absolute;
+
+  right: 35px;
+  top: 35px;
+
+  font-size: 80px;
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   GEAR BANNER
+========================================================= */
+
+.gear-banner {
+  width: 100%;
+  height: 158px;
+
+  margin: 32px 0;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    100deg,
+    #273f9f 0%,
+    #365dd2 50%,
+    #24418f 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+}
+
+.gear-banner-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+}
+
+.gear-banner-content p {
+  margin-bottom: 2px;
+
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.gear-banner-content p span {
+  text-decoration: underline;
+  text-decoration-color: #9cff00;
+  text-underline-offset: 4px;
+}
+
+.gear-banner-content h2 {
+  margin-bottom: 14px;
+
+  font-size: 29px;
+  font-weight: 800;
+}
+
+.gear-banner-content button {
+  padding: 8px 22px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: #9cff00;
+  color: #16213d;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  transition: transform 0.2s ease;
+}
+
+.gear-banner-content button:hover {
+  transform: scale(1.04);
+}
+
+.gear-banner-decoration {
+  position: absolute;
+
+  right: 70px;
+  top: 25px;
+
+  font-size: 70px;
+  opacity: 0.85;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-section {
+  margin-top: 55px;
+
+  padding: 40px 28px 32px;
+
+  background: #ffffff;
+  border-radius: 22px;
+}
+
+.faq-section h2 {
+  margin: 0 0 25px;
+
+  color: #080d19;
+
+  font-size: 28px;
+  font-weight: 750;
+}
+
+.faq-list {
+  width: 100%;
+}
+
+.faq-item {
+  border-bottom: 1px solid #edf0f2;
+}
+
+.faq-question {
+  width: 100%;
+
+  min-height: 64px;
+
+  padding: 15px 12px;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  text-align: left;
+
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+
+  width: 17px;
+  height: 17px;
+
+  color: #60718c;
+
+  transition: transform 0.2s ease;
+}
+
+.faq-item.open .faq-question svg {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 45px 18px 12px;
+
+  color: #666666;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+.more-faq-button {
+  width: 100%;
+
+  height: 45px;
+
+  margin-top: 22px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: #f3f5f6;
+  color: #101828;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.more-faq-button:hover {
+  background: #e9edef;
+}
+
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials-section {
+  padding: 35px 0 70px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 35px;
+
+  color: #68758a;
+  font-size: 14px;
+}
+
+.breadcrumb strong {
+  color: #111827;
+}
+
+.testimonials-section > h2 {
+  margin: 0 0 35px;
+
+  text-align: center;
+
+  color: #080d19;
+
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.testimonials-section > h2 span {
+  color: #ef641d;
+}
+
+.reviews-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.review-card {
+  min-height: 185px;
+
+  padding: 15px;
+
+  border: 1px solid #dfe4e9;
+  border-radius: 20px;
+
+  background: #ffffff;
+}
+
+.google-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color: #eeb217;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.google-g {
+  color: #4285f4;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.review-text {
+  min-height: 65px;
+
+  margin: 0 0 14px;
+
+  color: #172033;
+
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #d9e1ff;
+  color: #3154bb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.review-user strong {
+  display: block;
+
+  color: #777777;
+  font-size: 13px;
+}
+
+.review-user p {
+  margin: 3px 0 0;
+
+  color: #999999;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   FLOATING ACTIONS
+========================================================= */
+
+.rental-floating-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 28px;
+
+  transform: translateX(-50%);
+
+  z-index: 2000;
+
+  height: 50px;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 2px solid #8cff00;
+  border-radius: 30px;
+
+  background: #07143d;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.rental-floating-button:hover {
+  transform: translateX(-50%) translateY(-2px);
+  background: #0d1e52;
+}
+
+.rental-floating-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+
+/* =========================================================
+   CHAT BUTTON
+========================================================= */
+
+.chat-floating-button {
+  position: fixed;
+
+  right: 25px;
+  bottom: 28px;
+
+  z-index: 2100;
+
+  width: 54px;
+  height: 54px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #244cff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+}
+
+.chat-floating-button::before {
+  content: "";
+
+  position: absolute;
+
+  bottom: -3px;
+  left: 5px;
+
+  width: 14px;
+  height: 14px;
+
+  background: #244cff;
+
+  transform: rotate(25deg);
+
+  border-radius: 2px;
+}
+
+.chat-dots {
+  position: relative;
+  z-index: 2;
+
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+.mobile-bottom-nav {
+  display: none;
+
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 58px;
+
+  z-index: 1900;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e1e4e8;
+
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.05);
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mobile-bottom-nav button {
+  width: 25%;
+  height: 100%;
+
+  border: none;
+  background: transparent;
+
+  color: #667085;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+}
+
+.mobile-bottom-nav button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-bottom-nav button span {
+  font-size: 10px;
+}
+
+.mobile-bottom-nav button:hover {
+  color: #07143d;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+/* Tablets */
+
+@media (max-width: 1100px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rental-controls {
+    display: none;
+  }
+}
+
+
+/* Smaller tablets */
+
+@media (max-width: 900px) {
+  .category-sidebar {
+    margin-left: 15px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .promo-benefits {
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .promo-benefit {
+    min-width: 145px;
+  }
+
+  .promo-button {
+    position: static;
+    margin-top: 15px;
+  }
+
+  .main-content {
+    padding-right: 25px;
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .navbar-logo {
+    min-width: auto;
+
+    font-size: 22px;
+    padding: 7px 12px;
+  }
+
+  .navbar-actions {
+    gap: 10px;
+  }
+
+  .login-btn {
+    display: none;
+  }
+
+  .navbar-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .profile-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .category-nav {
+    height: 48px;
+    gap: 55px;
+  }
+
+  .page-layout {
+    display: block;
+  }
+
+  .category-sidebar {
+    display: none;
+  }
+
+  .main-content {
+    padding: 12px 14px 80px;
+  }
+
+  .gaming-hero {
+    height: 200px;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-brands {
+    font-size: 15px;
+    gap: 15px;
+  }
+
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .product-image-wrapper {
+    height: 180px;
+  }
+
+  .product-info {
+    padding: 9px 9px 13px;
+  }
+
+  .product-info h3 {
+    font-size: 14px;
+    min-height: 58px;
+  }
+
+  .price-label {
+    font-size: 11px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .add-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .promo-content {
+    padding: 22px;
+  }
+
+  .promo-content h2 {
+    font-size: 22px;
+  }
+
+  .promo-decoration,
+  .gear-banner-decoration {
+    display: none;
+  }
+
+  .gear-banner {
+    height: 145px;
+  }
+
+  .gear-banner-content p {
+    font-size: 14px;
+  }
+
+  .gear-banner-content h2 {
+    font-size: 21px;
+  }
+
+  .faq-section {
+    padding: 28px 16px;
+  }
+
+  .faq-section h2 {
+    font-size: 23px;
+  }
+
+  .faq-question {
+    font-size: 14px;
+  }
+
+  .testimonials-section > h2 {
+    font-size: 34px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-floating-button {
+    bottom: 70px;
+
+    height: 48px;
+
+    padding: 0 17px;
+
+    font-size: 12px;
+  }
+
+  .chat-floating-button {
+    right: 16px;
+    bottom: 72px;
+
+    width: 50px;
+    height: 50px;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+}
+
+
+/* Very small phones */
+
+@media (max-width: 550px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-heading span {
+    display: none;
+  }
+
+  .products-heading h2 {
+    font-size: 21px;
+  }
+}
+
+
+/* Small phones */
+
+@media (max-width: 500px) {
+  .testimonials-section > h2 {
+    font-size: 27px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA MOBILE SAFETY
+========================================================= */
+
+@media (max-width: 400px) {
+  .category-nav {
+    gap: 35px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .hero-content p {
+    font-size: 12px;
+  }
+
+  .hero-brands {
+    font-size: 13px;
+  }
+
+  .products-heading h2 {
+    font-size: 19px;
+  }
+}
+
+/* =========================================================
+   HERO PRODUCT ARTWORK
+========================================================= */
+
+.hero-product {
+  position: absolute;
+
+  z-index: 1;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.25));
+
+  transition: transform 0.3s ease;
+}
+
+/* Xbox on left */
+
+.hero-xbox {
+  width: 190px;
+  height: 190px;
+
+  left: -20px;
+  bottom: -25px;
+
+  transform: rotate(-8deg);
+}
+
+/* PS5 on right */
+
+.hero-ps5 {
+  width: 190px;
+  height: 190px;
+
+  right: -15px;
+  bottom: -30px;
+
+  transform: rotate(8deg);
+}
+
+/* VR */
+
+.hero-vr {
+  width: 130px;
+  height: 130px;
+
+  right: 130px;
+  top: 8px;
+
+  opacity: 0.95;
+
+  transform: rotate(-8deg);
+}
+
+/* Decorative glow */
+
+.hero-glow {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background: rgba(205, 122, 255, 0.18);
+
+  filter: blur(35px);
+
+  z-index: 0;
+}
+
+.hero-glow-left {
+  left: 50px;
+  bottom: -100px;
+}
+
+.hero-glow-right {
+  right: 40px;
+  top: -100px;
+}
+
+
+/* Keep text above artwork */
+
+.hero-content {
+  z-index: 5;
+}
+
+
+/* Hero responsive */
+
+@media (max-width: 900px) {
+  .hero-xbox {
+    width: 140px;
+    height: 140px;
+
+    left: -35px;
+    bottom: -20px;
+  }
+
+  .hero-ps5 {
+    width: 140px;
+    height: 140px;
+
+    right: -30px;
+    bottom: -20px;
+  }
+
+  .hero-vr {
+    width: 90px;
+    height: 90px;
+
+    right: 75px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .hero-xbox {
+    width: 100px;
+    height: 100px;
+
+    left: -25px;
+    bottom: -10px;
+  }
+
+  .hero-ps5 {
+    width: 100px;
+    height: 100px;
+
+    right: -25px;
+    bottom: -10px;
+  }
+
+  .hero-vr {
+    display: none;
+  }
+
+  .hero-content {
+    padding: 0 55px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .hero-xbox,
+  .hero-ps5 {
+    opacity: 0.35;
+  }
+
+  .hero-content {
+    padding: 0 20px;
+  }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.sharepal-footer {
+  width: 100%;
+  background: #10142d;
+  color: #ffffff;
+}
+
+/* =========================================================
+   FOOTER STATISTICS
+========================================================= */
+
+.footer-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-stat {
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-stat:last-child {
+  border-right: none;
+}
+
+.footer-stat strong {
+  margin-bottom: 8px;
+
+  color: #ffffff;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.footer-stat span {
+  color: #aeb4ca;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   FOOTER MAIN
+========================================================= */
+
+.footer-main {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 55px 45px;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1.3fr 1.3fr;
+
+  gap: 50px;
+}
+
+
+/* Brand */
+
+.footer-logo {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  font-size: 29px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.footer-logo span {
+  color: #8cff00;
+}
+
+.footer-brand p {
+  max-width: 310px;
+
+  color: #aeb4ca;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* Social */
+
+.footer-socials {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+.footer-socials button {
+  padding: 7px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 20px;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 11px;
+}
+
+
+/* Footer columns */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.footer-column h3 {
+  margin-bottom: 7px;
+
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer-column a {
+  color: #aeb4ca;
+
+  font-size: 13px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #8cff00;
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+  min-height: 65px;
+
+  padding: 0 45px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #858ba3;
+
+  font-size: 12px;
+}
+
+.footer-bottom div {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .sharepal-footer {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+
+    padding: 45px 30px;
+
+    gap: 35px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .sharepal-footer {
+    margin-left: -14px;
+    margin-right: -14px;
+
+    margin-bottom: 58px;
+  }
+
+  .footer-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-stat {
+    min-height: 100px;
+
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-stat:last-child {
+    border-bottom: none;
+  }
+
+  .footer-stat strong {
+    font-size: 25px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+
+    padding: 40px 25px;
+
+    gap: 35px;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    min-height: auto;
+
+    padding: 20px 25px;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    text-align: center;
+  }
+
+  .footer-bottom div {
+    gap: 15px;
+  }
+}
+
+/* =========================================================
+   FULL WIDTH SECTIONS
+========================================================= */
+
+.full-width-content {
+  width: 100%;
+  background: #f4f6f7;
+}
+
+.full-width-content .faq-section {
+  width: 100%;
+  margin: 0;
+  padding: 55px 7%;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.full-width-content .testimonials-section {
+  width: 100%;
+  padding: 45px 7% 80px;
+  background: #f4f6f7;
+}
+
+
+/* =========================================================
+   FULL WIDTH FAQ
+========================================================= */
+
+.full-width-content .faq-section h2 {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.full-width-content .faq-list {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.full-width-content .more-faq-button {
+  max-width: 1100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* =========================================================
+   FULL WIDTH REVIEWS
+========================================================= */
+
+.full-width-content .breadcrumb {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 35px;
+}
+
+.full-width-content .testimonials-section > h2 {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 35px;
+}
+
+.full-width-content .reviews-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.full-width-content .sharepal-footer {
+  width: 100%;
+  margin: 0;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .full-width-content .faq-section {
+    padding: 35px 16px;
+  }
+
+  .full-width-content .testimonials-section {
+    padding: 35px 16px 70px;
+  }
+
+  .full-width-content .faq-section h2,
+  .full-width-content .faq-list,
+  .full-width-content .more-faq-button,
+  .full-width-content .breadcrumb,
+  .full-width-content .testimonials-section > h2,
+  .full-width-content .reviews-grid {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   SHOW MORE PRODUCTS
+========================================================= */
+
+.show-more-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 15px 0 45px;
+}
+
+.showing-count {
+  margin-bottom: 14px;
+
+  color: #9a9a9a;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.show-more-button {
+  width: 290px;
+  height: 52px;
+
+  border: 2px solid #111111;
+  border-radius: 28px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.show-more-button:hover {
+  background: #111827;
+  color: #ffffff;
+
+  transform: translateY(-2px);
+}
+
+.all-products-message {
+  color: #777777;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .show-more-button {
+    width: 85%;
+    max-width: 290px;
+  }
+
+  .showing-count {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   NAVBAR FINAL POLISH
+========================================================= */
+
+.navbar-logo {
+  position: relative;
+
+  min-width: 145px;
+
+  padding: 10px 18px;
+
+  border-radius: 0 0 18px 18px;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  font-size: 27px;
+  font-weight: 800;
+  font-style: italic;
+
+  line-height: 1;
+}
+
+.navbar-logo span {
+  color: #3f55ff;
+}
+
+
+/* Small blue accent under logo */
+
+.navbar-logo::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 6px;
+
+  background: #315cff;
+
+  border-radius: 0 0 18px 18px;
+}
+
+
+/* Location */
+
+.location-control {
+  min-width: 125px;
+}
+
+.location-arrow {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+
+/* Date controls */
+
+.date-control {
+  min-width: 145px;
+
+  border-left: 1px solid #e4e4e4;
+}
+
+
+/* Select */
+
+.select-btn {
+  min-width: 95px;
+}
+
+
+/* Hover */
+
+.location-control:hover,
+.date-control:hover {
+  background: #f7f7f9;
+}
+
+.navbar-icon:hover {
+  transform: scale(1.08);
+}
+
+.profile-btn:hover {
+  transform: scale(1.05);
+}
+
+.login-btn:hover {
+  opacity: 0.8;
+}
+
+
+/* Smooth interactions */
+
+.navbar-icon,
+.profile-btn,
+.login-btn,
+.location-control,
+.date-control,
+.select-btn {
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* =========================================================
+   NAVBAR RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .navbar-container {
+    padding: 0 18px;
+  }
+
+  .navbar-logo {
+    min-width: 120px;
+    font-size: 23px;
+  }
+
+  .navbar-actions {
+    gap: 12px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .navbar-logo {
+    min-width: auto;
+
+    padding: 8px 12px;
+
+    font-size: 21px;
+  }
+
+  .navbar-logo::after {
+    height: 4px;
+  }
+
+  .navbar-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}

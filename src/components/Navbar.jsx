@@ -1,0 +1,99 @@
+import {
+  FiMapPin,
+  FiCalendar,
+  FiSearch,
+  FiShoppingCart,
+  FiUser,
+  FiChevronDown,
+} from "react-icons/fi";
+
+function Navbar() {
+  return (
+    <header className="navbar">
+
+      <div className="navbar-container">
+
+        {/* Logo */}
+
+        <div className="navbar-logo">
+          Share<span>Pal</span>
+        </div>
+
+
+        {/* Rental controls */}
+
+        <div className="rental-controls">
+
+          <button className="location-control">
+            <FiMapPin />
+
+            <span>Bangalore</span>
+
+            <FiChevronDown className="location-arrow" />
+          </button>
+
+
+          <button className="date-control">
+            <FiCalendar />
+
+            <span>Delivery Date</span>
+          </button>
+
+
+          <button className="date-control">
+            <FiCalendar />
+
+            <span>Pickup Date</span>
+          </button>
+
+
+          <button className="select-btn">
+            <FiCalendar />
+
+            <span>Select</span>
+          </button>
+
+        </div>
+
+
+        {/* Right actions */}
+
+        <div className="navbar-actions">
+
+          <button
+            className="navbar-icon"
+            aria-label="Search"
+          >
+            <FiSearch />
+          </button>
+
+
+          <button
+            className="navbar-icon"
+            aria-label="Shopping cart"
+          >
+            <FiShoppingCart />
+          </button>
+
+
+          <button
+            className="profile-btn"
+            aria-label="Profile"
+          >
+            <FiUser />
+          </button>
+
+
+          <button className="login-btn">
+            Hi, Login
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+  );
+}
+
+export default Navbar;
